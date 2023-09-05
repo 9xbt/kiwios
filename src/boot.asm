@@ -26,16 +26,22 @@ stackTop:
 
 section .text
     global _start
-    global buildNum
-
-    extern kernel_main
+    extern kmain
+    extern kloop
 
     _start:
         ; assign current stack pointer location to stackTop
 	    mov esp, stackTop
 
-        ; call the kernel main source
-	    call kernel_main
+        ; call kmain
+	    call kmain
 
-	    cli
-        jmp $
+        ; main loop
+        jmp _loop
+        
+    _loop:
+        ; call kloop
+        call kloop
+
+        ; loop
+        jmp _loop

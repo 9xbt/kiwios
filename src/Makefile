@@ -21,4 +21,4 @@ build:
 
 clean:
 	rm -r ../bin
-	rm -r ../out
+	rm -r ../obj
