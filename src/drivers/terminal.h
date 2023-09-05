@@ -76,6 +76,29 @@ void term_println(char* str, char col)
     term_print("\n", 0x0F);
 }
 
+void term_printchar(char chr, char col)
+{
+    // Print the awaiting char
+    *(TERMINAL_BUFFER + (( (TERMINAL_Y * TERMINAL_WIDTH) + TERMINAL_X) * 2)) = chr;
+    *(TERMINAL_BUFFER + (( (TERMINAL_Y * TERMINAL_WIDTH) + TERMINAL_X) * 2) + 1) = col;
+
+    // Handle the cursor position
+    TERMINAL_X++;
+
+    if (TERMINAL_X >= TERMINAL_WIDTH)
+    {
+        TERMINAL_X = 0;
+        TERMINAL_Y++;
+    }
+
+    if (TERMINAL_Y >= TERMINAL_HEIGHT)
+    {
+        term_scroll();
+    }
+
+    term_setCursorPos(TERMINAL_X, TERMINAL_Y + 1);
+}
+
 void term_scroll()
 {
     for (int i = 0; i < TERMINAL_WIDTH * TERMINAL_HEIGHT * 2; i++)

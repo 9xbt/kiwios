@@ -1,9 +1,9 @@
 /**
  * Global Descriptor Table(GDT) setup
- */\
+ */
 
- #ifndef GDT_H
- #define GDT_H
+#ifndef GDT_H
+#define GDT_H
 
 #include <inttypes.h>
 
@@ -22,6 +22,9 @@ typedef struct {
     uint16_t limit;       // limit size of all GDT segments
     uint32_t base_address;  // base address of the first GDT segment
 } __attribute__((packed)) GDT_PTR;
+
+// asm gdt functions, define in load_gdt.asm
+extern void load_gdt(uint32_t gdt_ptr);
 
 GDT g_gdt[NO_GDT_DESCRIPTORS];
 GDT_PTR g_gdt_ptr;
