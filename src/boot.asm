@@ -27,14 +27,14 @@ stackTop:
 section .text
     global _start
 
-    extern kernel
+    extern kernel_main
 
     _start:
         ; assign current stack pointer location to stackTop
 	    mov esp, stackTop
 
         ; call the kernel main source
-	    call kernel
+	    call kernel_main
 
 	    cli
         jmp $
