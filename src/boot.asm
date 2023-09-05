@@ -26,6 +26,7 @@ stackTop:
 
 section .text
     global _start
+    global buildNum
 
     extern kernel_main
 
