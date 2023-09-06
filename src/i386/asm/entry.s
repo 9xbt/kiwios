@@ -1,27 +1,32 @@
-; set magic number to 0x1BADB002 to identified by bootloader 
+;
+; kiwios - An OS made in C that's as simple as eating a kiwi
+; Copyright (C) 2023 kiwiorg
+;
+; This program is free software; you can redistribute it and/or
+; modify it under the terms of the GNU General Public License
+; as published by the Free Software Foundation; either version 2
+; of the License, or (at your option) any later version.
+;
+; This program is distributed in the hope that it will be useful,
+; but WITHOUT ANY WARRANTY; without even the implied warranty of
+; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+; GNU General Public License for more details.
+;
+; You should have received a copy of the GNU General Public License
+; along with this program.  If not, see <https://www.gnu.org/licenses/>.
+;
+
 MAGIC equ 0x1BADB002
-
-; set flags to 0
 FLAGS equ 0
-
-; set the checksum
 CHECKSUM equ -(MAGIC + FLAGS)
 
-; set multiboot enabled
 section .multiboot
+    dd MAGIC
+    dd FLAGS
+    dd CHECKSUM
 
-; define type to long for each data defined as above
-dd MAGIC
-dd FLAGS
-dd CHECKSUM
-
-; set the stack bottom 
 global stackBottom:
-
-; define the maximum size of stack to 1024 bytes
 times 1024 db 0
-
-; set the stack top which grows from higher to lower
 stackTop:
 
 section .text
@@ -30,18 +35,11 @@ section .text
     extern kloop
 
     _start:
-        ; assign current stack pointer location to stackTop
 	    mov esp, stackTop
 
-        ; call kmain
 	    call kmain
-
-        ; main loop
         jmp _loop
         
     _loop:
-        ; call kloop
         call kloop
-
-        ; loop
         jmp _loop

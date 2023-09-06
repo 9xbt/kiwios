@@ -1,5 +1,19 @@
-/**
- * Interrupt Descriptor Table(GDT) setup
+/*
+ * kiwios - An OS made in C that's as simple as eating a kiwi
+ * Copyright (C) 2023 kiwiorg
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
 #ifndef IDT_H
@@ -13,35 +27,25 @@
 #define NO_IDT_DESCRIPTORS     256
 
 typedef struct {
-    uint16_t base_low;          // lower 16 bits 0-15 of the address to jump to when this interrupt fires
-    uint16_t segment_selector;  // code segment selector in GDT
-    uint8_t zero;               // unused, always be zero
-    uint8_t type;               // types trap, interrupt gates
-    uint16_t base_high;         // upper 16 bits 16-31 of the address to jump to
+    uint16_t base_low;               // Lower 16 bits 0-15 of the address to jump to when this interrupt fires
+    uint16_t segment_selector;       // Code segment selector in GDT
+    uint8_t zero;                    // Unused
+    uint8_t type;                    // Types trap, interrupt gates
+    uint16_t base_high;              // Upper 16 bits 16-31 of the address to jump to
 } __attribute__((packed)) IDT;
 
 typedef struct {
-    uint16_t limit;         // limit size of all IDT segments
-    uint32_t base_address;  // base address of the first IDT segment
+    uint16_t limit;                  // Limit size of all IDT segments
+    uint32_t base_address;           // Base address of the first IDT segment
 } __attribute__((packed)) IDT_PTR;
 
-
-// asm gdt functions, define in load_idt.asm
+// Load the IDT
 extern void load_idt(uint32_t idt_ptr);
-
-/**
- * fill entries of IDT 
- */
-void idt_set_entry(int index, uint32_t base, uint16_t seg_sel, uint8_t flags);
-
-void idt_init();
 
 IDT g_idt[NO_IDT_DESCRIPTORS];
 IDT_PTR g_idt_ptr;
 
-/**
- * fill entries of IDT 
- */
+// Fill IDT entries
 void idt_set_entry(int index, uint32_t base, uint16_t seg_sel, uint8_t flags) {
     IDT *this = &g_idt[index];
 
@@ -52,7 +56,7 @@ void idt_set_entry(int index, uint32_t base, uint16_t seg_sel, uint8_t flags) {
     this->base_high = (base >> 16) & 0xFFFF;
 }
 
-// defined in exception.asm
+// External exception voids
 extern void exception_0();
 extern void exception_1();
 extern void exception_2();
@@ -87,7 +91,7 @@ extern void exception_30();
 extern void exception_31();
 extern void exception_128();
 
-// defined in irq.asm
+// External IRQ voids
 extern void irq_0();
 extern void irq_1();
 extern void irq_2();
@@ -105,6 +109,7 @@ extern void irq_13();
 extern void irq_14();
 extern void irq_15();
 
+// Initialize the IDT
 void idt_init() {
     g_idt_ptr.base_address = (uint32_t)g_idt;
     g_idt_ptr.limit = sizeof(g_idt) - 1;

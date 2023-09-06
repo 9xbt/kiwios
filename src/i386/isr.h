@@ -1,5 +1,19 @@
-/**
- * Interrupt Service Routine(ISR) setup
+/*
+ * kiwios - An OS made in C that's as simple as eating a kiwi
+ * Copyright (C) 2023 kiwiorg
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
 #ifndef ISR_H
@@ -15,37 +29,15 @@
 
 typedef struct {
     uint32_t ds;
-    uint32_t edi, esi, ebp, esp, ebx, edx, ecx, eax;  // pushed by pusha
-    uint32_t int_no, err_code;                        // interrupt number and error code
-    uint32_t eip, cs, eflags, useresp, ss;            // pushed by the processor automatically
+    uint32_t edi, esi, ebp, esp, ebx, edx, ecx, eax;   // Pushed by pusha
+    uint32_t int_no, err_code;                         // Interrupt number and error code
+    uint32_t eip, cs, eflags, useresp, ss;             // Pushed by the processor automatically
 } REGISTERS;
 
 // ISR function prototype
 typedef void (*ISR)(REGISTERS *);
 
-/**
- * register given handler to interrupt handlers at given num
- */
-void isr_register_interrupt_handler(int num, ISR handler);
-
-/*
- * turn off current interrupt
-*/
-void isr_end_interrupt(int num);
-
-/**
- * invoke exception routine,
- * being called in exception.asm
- */
-void isr_exception_handler(REGISTERS reg);
-
-/**
- * invoke isr routine and send eoi to pic,
- * being called in irq.asm
- */
-void isr_irq_handler(REGISTERS *reg);
-
-// defined in exception.asm
+// External exception voids
 extern void exception_0();
 extern void exception_1();
 extern void exception_2();
@@ -80,7 +72,7 @@ extern void exception_30();
 extern void exception_31();
 extern void exception_128();
 
-// defined in irq.asm
+// External IRQ voids
 extern void irq_0();
 extern void irq_1();
 extern void irq_2();
@@ -120,7 +112,7 @@ extern void irq_15();
 // For both exceptions and irq interrupt
 ISR g_interrupt_handlers[NO_INTERRUPT_HANDLERS];
 
-// for more details, see Intel manual -> Interrupt & Exception Handling
+// For more details, see Intel manual -> Interrupt & Exception Handling
 char *exception_messages[32] = {
     "Division By Zero",
     "Debug",
@@ -156,9 +148,7 @@ char *exception_messages[32] = {
     "Reserved"
 };
 
-/**
- * register given handler to interrupt handlers at given num
- */
+// Register given handler to interrupt handlers at given number
 void isr_register_interrupt_handler(int num, ISR handler) {
     //printf("IRQ %d registered\n", num);
     term_print("some IRQ registered\n", 0x0F);
@@ -166,17 +156,12 @@ void isr_register_interrupt_handler(int num, ISR handler) {
         g_interrupt_handlers[num] = handler;
 }
 
-/*
- * turn off current interrupt
-*/
+// Turn off current interrupt
 void isr_end_interrupt(int num) {
     pic_eoi(num);
 }
 
-/**
- * invoke isr routine and send eoi to pic,
- * being called in irq.asm
- */
+// Invoke ISR routine and send EOI to PIC, being called in irq.asm
 void isr_irq_handler(REGISTERS *reg) {
     if (g_interrupt_handlers[reg->int_no] != 0) {
         ISR handler = g_interrupt_handlers[reg->int_no];
@@ -185,6 +170,7 @@ void isr_irq_handler(REGISTERS *reg) {
     pic_eoi(reg->int_no);
 }
 
+// Print registers
 static void print_registers(REGISTERS *reg) {
     //printf("REGISTERS:\n");
     //printf("err_code=%d\n", reg->err_code);
@@ -193,18 +179,15 @@ static void print_registers(REGISTERS *reg) {
     //printf("eip=0x%x, cs=0x%x, ss=0x%x, eflags=0x%x, useresp=0x%x\n", reg->eip, reg->ss, reg->eflags, reg->useresp);
 }
 
-/**
- * invoke exception routine,
- * being called in exception.asm
- */
+// Invoke exception routine, being called in exception.asm
 void isr_exception_handler(REGISTERS reg) {
     if (reg.int_no < 32) {
         term_println("EXCEPTION:", 0x0F);
         term_println(exception_messages[reg.int_no], 0x0F);
         //print_registers(&reg);
-        for (;;)
-            ;
+        for (;;);
     }
+    
     if (g_interrupt_handlers[reg.int_no] != 0) {
         ISR handler = g_interrupt_handlers[reg.int_no];
         handler(&reg);
