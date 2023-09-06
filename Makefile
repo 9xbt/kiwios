@@ -8,7 +8,7 @@ LD = /usr/bin/ld
 GRUB = /usr/bin/grub-mkrescue
 # sources
 SRC = src
-ASM_SRC = src/asm
+ASM_SRC = src/i386/asm
 # objects
 BIN = bin
 OBJ = obj
@@ -21,13 +21,17 @@ all:
 	mkdir -p $(BIN)/boot/grub
 	mkdir -p $(OBJ)
 
-	$(ASM) -f elf32 -o $(OBJ)/boot.o $(SRC)/boot.asm
-	$(ASM) -f elf32 -o $(OBJ)/exception.o $(ASM_SRC)/exception.asm
-	$(ASM) -f elf32 -o $(OBJ)/irq.o $(ASM_SRC)/irq.asm
-	$(ASM) -f elf32 -o $(OBJ)/load_gdt.o $(ASM_SRC)/load_gdt.asm
-	$(ASM) -f elf32 -o $(OBJ)/load_idt.o $(ASM_SRC)/load_idt.asm
+	@printf "[ Assembling... ]\n"
+	$(ASM) -f elf32 -o $(OBJ)/entry.o $(ASM_SRC)/entry.s
+	$(ASM) -f elf32 -o $(OBJ)/exception.o $(ASM_SRC)/exception.s
+	$(ASM) -f elf32 -o $(OBJ)/irq.o $(ASM_SRC)/irq.s
+	$(ASM) -f elf32 -o $(OBJ)/gdt.o $(ASM_SRC)/gdt.s
+	$(ASM) -f elf32 -o $(OBJ)/idt.o $(ASM_SRC)/idt.s
+	@printf "[ Compiling... ]\n"
 	$(CC) -m32 -c $(SRC)/kernel.c -o $(OBJ)/kernel.o $(CC_FLAGS)
-	$(LD) -m elf_i386 -T $(CONFIG)/linker.ld $(OBJ)/kernel.o $(OBJ)/boot.o $(OBJ)/exception.o $(OBJ)/irq.o $(OBJ)/load_gdt.o $(OBJ)/load_idt.o -o $(BIN)/boot/kiwios.elf -nostdlib
+	@printf "[ Linking... ]\n"
+	$(LD) -m elf_i386 -T $(CONFIG)/linker.ld $(OBJ)/kernel.o $(OBJ)/entry.o $(OBJ)/exception.o $(OBJ)/irq.o $(OBJ)/gdt.o $(OBJ)/idt.o -o $(BIN)/boot/kiwios.elf -nostdlib
+	@printf "[ Checking... ]\n"
 	grub-file --is-x86-multiboot $(BIN)/boot/kiwios.elf
 	cp $(CONFIG)/grub.cfg $(BIN)/boot/grub/grub.cfg
 	grub-mkrescue -o kiwios.iso $(BIN)/

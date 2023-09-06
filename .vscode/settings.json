@@ -1,7 +1,9 @@
 {
     "files.associations": {
         "terminal.h": "c",
-        "hal.h": "c"
+        "hal.h": "c",
+        "gdt.h": "c",
+        "isr.h": "c"
     },
     "C_Cpp.errorSquiggles": "disabled",
     "C_Cpp.default.compilerPath": "/usr/bin/gcc"

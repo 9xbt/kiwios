@@ -1,8 +1,8 @@
-#include "drivers/terminal.h"
-#include "drivers/gdt.h"
-#include "drivers/idt.h"
-#include "drivers/isr.h"
-#include "drivers/kbd.h"
+#include "terminal.h"
+#include "i386/gdt.h"
+#include "i386/idt.h"
+#include "i386/isr.h"
+#include "i386/ps2.h"
 
 void kmain(void)
 {
@@ -23,7 +23,6 @@ void kloop(void)
 {
     while (1)
     {
-        char c = kbd_getchar();
-        term_printchar(c, 0x0F); // its frozen :sob:
+        //char c = kbd_getchar();
     }
 }
