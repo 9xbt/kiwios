@@ -23,6 +23,7 @@
 #include "idt.h"
 #include "isr.h"
 #include "pic.h"
+#include "../utils/logger.h"
 
 #define NO_IDT_DESCRIPTORS     256
 
@@ -46,7 +47,7 @@ IDT g_idt[NO_IDT_DESCRIPTORS];
 IDT_PTR g_idt_ptr;
 
 // Fill IDT entries
-void idt_set_entry(int index, uint32_t base, uint16_t seg_sel, uint8_t flags) {
+static void idt_set_entry(int index, uint32_t base, uint16_t seg_sel, uint8_t flags) {
     IDT *this = &g_idt[index];
 
     this->base_low = base & 0xFFFF;
@@ -167,6 +168,8 @@ void idt_init() {
 
     load_idt((uint32_t)&g_idt_ptr);
     asm volatile("sti");
+
+    log("IDT Initialized");
 }
 
 #endif

@@ -115,6 +115,7 @@
 #include "isr.h"
 #include "../utils/string.h"
 #include "../terminal.h"
+#include "../utils/logger.h"
 
 static bool g_caps_lock = false;
 static bool g_shift_pressed = false;
@@ -129,9 +130,6 @@ char g_scan_code_chars[128] = {
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '-', 0, 0, 0, '+', 0, 0,
     0, 0, 0, 0, 0, 0, 0, 0, 0
 };
-
-// Keyboard buffer
-char kbd_buffer[256];
 
 // Get scancode
 static int get_scancode() {
@@ -225,13 +223,14 @@ void keyboard_handler(REGISTERS *r) {
                 break;
         }
 
-        if (g_ch > 0)
-            term_printchar(g_ch, 0x0F);
+        //if (g_ch > 0)
+        //    term_printchar(g_ch, 0x0F);
     }
 }
 
 void kbd_init() {
     isr_register_interrupt_handler(IRQ_BASE + 1, keyboard_handler);
+    log("Keyboard Initialized");
 }
 
 // Blocking character read
@@ -242,6 +241,10 @@ char kbd_getchar() {
     c = g_ch;
     g_ch = 0;
     g_scan_code = 0;
+
+    if (g_ch > 0)
+        term_print(g_ch, 0x0F);
+
     return c;
 }
 

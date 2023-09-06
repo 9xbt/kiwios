@@ -20,6 +20,7 @@
 #define GDT_H
 
 #include <inttypes.h>
+#include "../utils/logger.h"
 
 #define NO_GDT_DESCRIPTORS 8
 
@@ -70,6 +71,8 @@ void gdt_init() {
     gdt_set_entry(4, 0, 0xFFFFFFFF, 0xF2, 0xCF);   // User data segment
 
     load_gdt((uint32_t)&g_gdt_ptr);
+
+    log("GDT Initialized");
 }
 
 #endif
