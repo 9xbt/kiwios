@@ -79,9 +79,12 @@ void term_println(char* str, char col)
 
 void term_printchar(char chr, char col)
 {
+    if (chr <= 0)
+        return;
+
     // Print the awaiting char
-    *(TERMINAL_BUFFER + (( (TERMINAL_Y * TERMINAL_WIDTH) + TERMINAL_X) * 2)) = chr;
-    *(TERMINAL_BUFFER + (( (TERMINAL_Y * TERMINAL_WIDTH) + TERMINAL_X) * 2) + 1) = col;
+    *(TERMINAL_BUFFER + (((TERMINAL_Y * TERMINAL_WIDTH) + TERMINAL_X) * 2)) = chr;
+    *(TERMINAL_BUFFER + (((TERMINAL_Y * TERMINAL_WIDTH) + TERMINAL_X) * 2) + 1) = col;
 
     // Handle the cursor position
     TERMINAL_X++;

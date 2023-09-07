@@ -133,6 +133,7 @@ char g_scan_code_chars[128] = {
 
 // Keyboard buffer
 char kbd_buffer[256];
+short int kbd_buffer_pos;
 
 // Get scancode
 static int get_scancode() {
@@ -144,9 +145,7 @@ static int get_scancode() {
         scancode = inb(KEYBOARD_DATA_PORT); // Get the scan code
         break;
     }
-    if (i > 0)
-        return scancode;
-    return 0;
+    return scancode;
 }
 
 char alternate_chars(char ch) {
@@ -225,20 +224,6 @@ void keyboard_handler(REGISTERS *r) {
                 }
                 break;
         }
-
-        if (g_ch > 0) {
-            switch (g_scan_code) {
-                case 0x0E:
-                    TERMINAL_X--;
-                    term_printchar(' ', 0x0F);
-                    TERMINAL_X--;                    
-                    break;
-
-                default:
-                    term_printchar(g_ch, 0x0F);
-                    break;
-            }
-        }
     }
 }
 
@@ -251,22 +236,77 @@ void kbd_init() {
 char kbd_getchar() {
     char c;
 
-    while(g_ch < 0);
+    int s = get_scancode();
+    while(s <= 0) {
+        s = get_scancode();
+    }
+
     c = g_ch;
     g_ch = 0;
     g_scan_code = 0;
     return c;
 }
 
-// Get scancode
-char kbd_get_scancode() {
-    char code;
+char* kbd_getstring() {
+    //memset(kbd_buffer, 0x0, 256);
 
-    while(g_scan_code <= 0);
-    code = g_scan_code;
-    g_ch = 0;
-    g_scan_code = 0;
-    return code;
+    for (int i = 0; i < 256; i++)
+    {
+        kbd_buffer[i] = 0x00;
+    }
+
+    bool reading = true;
+    char startX = TERMINAL_X, startY = TERMINAL_Y;
+    short int posInBuffer = 0;
+
+    while (reading) {
+        char key = kbd_getchar();
+
+        switch (key) {
+            case 0x0:
+                break;
+
+            case 0x8:
+                if (!(TERMINAL_X == startX && TERMINAL_Y == startY)) {
+                    if (TERMINAL_X == 0) {
+                        TERMINAL_X = TERMINAL_WIDTH - 1;
+                        TERMINAL_Y--;
+                        term_printchar(' ', 0x0F);
+                        TERMINAL_X = TERMINAL_WIDTH - 1;
+                        TERMINAL_Y--;
+                        vga_movecursor(TERMINAL_X, TERMINAL_Y);
+                    }
+                    else {
+                        TERMINAL_X--;
+                        term_printchar(' ', 0x0F);
+                        TERMINAL_X--;
+                        vga_movecursor(TERMINAL_X, TERMINAL_Y);
+                    }
+
+                    kbd_buffer[posInBuffer] = 0x0;
+                    posInBuffer--;
+                }
+                break;
+                
+            case 0xA:
+                if (posInBuffer < 256) {
+                    term_print("\n", 0x0F);
+                    reading = false;
+                }
+                break;
+            
+            default:
+                if (posInBuffer < 256) {
+                    term_printchar(key, 0x0F);
+
+                    kbd_buffer[posInBuffer] = key;
+                    posInBuffer++;
+                }
+                break;
+        }
+    }
+
+    return kbd_buffer;
 }
 
 #endif
