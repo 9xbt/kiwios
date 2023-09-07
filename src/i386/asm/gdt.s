@@ -35,6 +35,7 @@ load_gdt:
     or eax, 1
     mov	cr0, eax
 
-    jmp 0x08:far_jump       ; jump to far with code data segment
+    jmp 0x08: far_jump       ; jump to far with code data segment
+
 far_jump:
     ret

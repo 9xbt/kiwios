@@ -131,6 +131,9 @@ char g_scan_code_chars[128] = {
     0, 0, 0, 0, 0, 0, 0, 0, 0
 };
 
+// Keyboard buffer
+char kbd_buffer[256];
+
 // Get scancode
 static int get_scancode() {
     int i, scancode = 0;
@@ -223,8 +226,19 @@ void keyboard_handler(REGISTERS *r) {
                 break;
         }
 
-        //if (g_ch > 0)
-        //    term_printchar(g_ch, 0x0F);
+        if (g_ch > 0) {
+            switch (g_scan_code) {
+                case 0x0E:
+                    TERMINAL_X--;
+                    term_printchar(' ', 0x0F);
+                    TERMINAL_X--;                    
+                    break;
+
+                default:
+                    term_printchar(g_ch, 0x0F);
+                    break;
+            }
+        }
     }
 }
 
@@ -241,10 +255,6 @@ char kbd_getchar() {
     c = g_ch;
     g_ch = 0;
     g_scan_code = 0;
-
-    if (g_ch > 0)
-        term_print(g_ch, 0x0F);
-
     return c;
 }
 

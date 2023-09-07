@@ -9,12 +9,12 @@ void kmain(void)
 {
     term_clear();
 
+    vga_init();
     gdt_init();
     idt_init();
     kbd_init();
-    vga_init();
 
-    term_print("kiwiOS [build 230905]", 0x0F);
+    term_print("\nkiwiOS [build 230906]", 0x0F);
     term_println("\n _    _          _  ___  ____\n| | _(_)_      _(_)/ _ \\/ ___|\n| |/ / \\ \\ /\\ / / | | | \\___ \\\n|   <| |\\ V  V /| | |_| |___) |\n|_|\\_\\_| \\_/\\_/ |_|\\___/|____/\n", 0x0D);
     term_println("Copyright (c) 2023 kiwiorg", 0x0F);
     term_println("All rights reserved\n", 0x0F);
@@ -22,8 +22,4 @@ void kmain(void)
 
 void kloop(void)
 {
-    while (1)
-    {
-        kbd_getchar();
-    }
 }

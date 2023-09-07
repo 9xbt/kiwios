@@ -23,7 +23,7 @@
 #include "isr.h"
 #include "idt.h"
 #include "pic.h"
-#include "../terminal.h"
+#include "../utils/logger.h"
 
 #define NO_INTERRUPT_HANDLERS    256
 
@@ -150,9 +150,7 @@ char *exception_messages[32] = {
 
 // Register given handler to interrupt handlers at given number
 void isr_register_interrupt_handler(int num, ISR handler) {
-    term_print("[ OK ] IRQ ");
-    //printf("IRQ %d registered\n", num);
-    term_print("some IRQ registered\n", 0x0F);
+    log("IRQ Registered");
     if (num < NO_INTERRUPT_HANDLERS)
         g_interrupt_handlers[num] = handler;
 }

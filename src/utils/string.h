@@ -3,11 +3,11 @@
 
 #include <inttypes.h>
 
-void *memset(char *dst, char c, uint32_t n) {
-    char *temp = dst;
-    for (; n != 0; n--) *temp++ = c;
-    return dst;
-}
+//void *memset(void *dst, char c, uint32 n) {
+//    char *temp = dst;
+//    for (; n != 0; n--) *temp++ = c;
+//    return dst;
+//}
 
 void *memcpy(char *dst, const char *src, uint32_t n) {
     char *ret = dst;

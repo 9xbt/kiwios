@@ -22,7 +22,7 @@
 #include "../terminal.h"
 
 static void log(char* message) {
-    term_print("[ OK ] ", 0x02);
+    term_print("[ OK ] ", 0x0A);
     term_println(message, 0x0F);
 }
 

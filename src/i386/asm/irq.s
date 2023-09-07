@@ -48,6 +48,7 @@ irq_handler:
     
 %macro IRQ 2
   global irq_%1
+  
   irq_%1:
     cli
     push byte 0

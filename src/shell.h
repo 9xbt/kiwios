@@ -24,10 +24,6 @@
 // Keyboard buffer
 char kbd_buffer[256];
 
-static void shell_read() {
-    
-}
-
 static void shell_run() {
 
 }
