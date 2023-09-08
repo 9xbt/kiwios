@@ -21,10 +21,22 @@
 
 #include "port.h"
 #include "../utils/logger.h"
+#include "../terminal.h"
 
 #define VGA_WIDTH 80
+#define VGA_HEIGHT 25
 
-void vga_init()
+void vga_init(unsigned const char color) {
+	for (int i = 0; i < VGA_WIDTH * VGA_HEIGHT * 2; i += 2)
+    {
+        *(char*)(0xB8000 + i) = 0x00;
+        *(char*)(0xB8000 + i + 1) = color;
+    }
+
+	vga_enablecursor();
+}
+
+void vga_enablecursor()
 {
     outb(0x3D4, 0x0A);
 	outb(0x3D5, (inb(0x3D5) & 0xC0) | 14);

@@ -25,6 +25,7 @@
 #include "pic.h"
 #include "../terminal.h"
 #include "../utils/string.h"
+#include "../crash.h"
 
 #define NO_INTERRUPT_HANDLERS    256
 
@@ -177,19 +178,17 @@ void isr_irq_handler(REGISTERS *reg) {
 
 // Print registers
 static void print_registers(REGISTERS *reg) {
-    //printf("REGISTERS:\n");
-    //printf("err_code=%d\n", reg->err_code);
-    //printf("eax=0x%x, ebx=0x%x, ecx=0x%x, edx=0x%x\n", reg->eax, reg->ebx, reg->ecx, reg->edx);
-    //printf("edi=0x%x, esi=0x%x, ebp=0x%x, esp=0x%x\n", reg->edi, reg->esi, reg->ebp, reg->esp);
-    //printf("eip=0x%x, cs=0x%x, ss=0x%x, eflags=0x%x, useresp=0x%x\n", reg->eip, reg->ss, reg->eflags, reg->useresp);
+    printf("REGISTERS:\n");
+    printf("err_code=%d\n", reg->err_code);
+    printf("eax=0x%x, ebx=0x%x, ecx=0x%x, edx=0x%x\n", reg->eax, reg->ebx, reg->ecx, reg->edx);
+    printf("edi=0x%x, esi=0x%x, ebp=0x%x, esp=0x%x\n", reg->edi, reg->esi, reg->ebp, reg->esp);
+    printf("eip=0x%x, cs=0x%x, ss=0x%x, eflags=0x%x, useresp=0x%x\n", reg->eip, reg->ss, reg->eflags, reg->useresp);
 }
 
 // Invoke exception routine, being called in exception.asm
 void isr_exception_handler(REGISTERS reg) {
     if (reg.int_no < 32) {
-        term_println("EXCEPTION:", 0x0F);
-        term_println(exception_messages[reg.int_no], 0x0F);
-        //print_registers(&reg);
+        showCrashScreen(exception_messages[reg.int_no]);
         for (;;);
     }
     

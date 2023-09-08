@@ -20,12 +20,15 @@
 #define SHELL_H
 
 #include "../i386/ps2.h"
+#include "../i386/port.h"
 #include "../utils/string.h"
 #include "../terminal.h"
 #include "commands/help.h"
 #include "commands/info.h"
 #include "commands/clear.h"
 #include "commands/echo.h"
+#include "commands/reboot.h"
+#include "commands/shutdown.h"
 
 static void shell_run() {
     term_print("$ ", 0x0F);
@@ -43,7 +46,13 @@ static void shell_run() {
     }
     else if (!strncmp(input, "echo", 4)) {
         cmd_echo(input);
-    } 
+    }
+    else if (!strcmp(input, "reboot")) {
+        cmd_reboot();
+    }
+    else if (!strcmp(input, "shutdown")) {
+        cmd_shutdown();
+    }
     else {
         term_print("Command \"", 0x0C);
         term_print(input, 0x0C);

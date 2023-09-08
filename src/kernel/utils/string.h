@@ -66,9 +66,9 @@ static int strcmp(const char *s1, char *s2) {
 }
 
 
-static int strncmp(const char *s1, const char *s2, register size_t n)
+static int strncmp(const char *s1, const char *s2, size_t n)
 {
-  register unsigned char u1, u2;
+unsigned char u1, u2;
 
   while (n-- > 0)
     {

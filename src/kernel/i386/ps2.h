@@ -284,7 +284,6 @@ char* kbd_getstring() {
                     }
 
                     kbd_buffer[posInBuffer] = 0x0;
-                    kbd_buffer[posInBuffer + 1] = 0x0; // funky bug fix
                     posInBuffer--;
                 }
                 break;
@@ -292,6 +291,7 @@ char* kbd_getstring() {
             case 0xA:
                 if (posInBuffer < 256) {
                     term_print("\n", 0x0F);
+                    kbd_buffer[posInBuffer] = 0x0;
                     reading = false;
                 }
                 break;
