@@ -31,7 +31,7 @@ void showCrashScreen(const char *exception) {
     term_print("     __\n   _ / /\n  (_) |\n   _| |\n  (_) |\n     \\_\\", 0x1F);    
 
     term_setCursorPos(12, 3);
-    term_print("A problem has been detected and kiwiOS has had to shut down.", 0x1F);
+    term_print("A problem has been detected and kiwios has had to shut down.", 0x1F);
 
     term_setCursorPos(12, 5);
     term_print("*** STOP: ", 0x1F);
