@@ -30,10 +30,6 @@
 static void shell_run() {
     term_print("$ ", 0x0F);
     char* input = kbd_getstring();
-    char* input_lowercase;
-
-    memcpy(input_lowercase, input, strlen(input));
-    for(int i = 0; input_lowercase[i]; i++) input_lowercase[i] = lower(input_lowercase[i]); // Convert input to lowercase
 
     if (!strcmp(input, ""));
     else if (!strcmp(input, "?") || !strcmp(input, "help")) {
