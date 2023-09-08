@@ -114,7 +114,7 @@ extern void irq_15();
 ISR g_interrupt_handlers[NO_INTERRUPT_HANDLERS];
 
 // For more details, see Intel manual -> Interrupt & Exception Handling
-char *exception_messages[32] = {
+const char *exception_messages[32] = {
     "Division By Zero",
     "Debug",
     "Non Maskable Interrupt",
@@ -154,12 +154,9 @@ void isr_register_interrupt_handler(int num, ISR handler) {
     if (num < NO_INTERRUPT_HANDLERS)
         g_interrupt_handlers[num] = handler;
 
-    term_print("[ OK ]", 0x0A);
-    term_print(" IRQ " , 0x0F);
-    
-    char buf[3]; // 3's fine for now
+    logger_log("IRQ ");
+    char buf[4];
     itoa(buf, 10, num);
-
     term_print(buf, 0x0F);
     term_println(" Registered", 0x0F); 
 }

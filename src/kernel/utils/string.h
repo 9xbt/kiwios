@@ -20,15 +20,16 @@
 #define STRING_H
 
 #include <inttypes.h>
+#include <stddef.h>
 #include "../common.h"
 
-void *memset(void *dst, char c, uint32_t n) {
+static void *memset(void *dst, char c, uint32_t n) {
     char *temp = dst;
     for (; n != 0; n--) *temp++ = c;
     return dst;
 }
 
-void *memcpy(char *dst, const char *src, uint32_t n) {
+static void *memcpy(char *dst, const char *src, uint32_t n) {
     char *ret = dst;
     char *p = dst;
     const char *q = src;
@@ -37,7 +38,7 @@ void *memcpy(char *dst, const char *src, uint32_t n) {
     return ret;
 }
 
-int memcmp(uint8_t *s1, uint8_t *s2, uint32_t n) {
+static int memcmp(uint8_t *s1, uint8_t *s2, uint32_t n) {
     while (n--) {
         if (*s1 != *s2)
             return 0;
@@ -47,14 +48,14 @@ int memcmp(uint8_t *s1, uint8_t *s2, uint32_t n) {
     return 1;
 }
 
-int strlen(const char *s) {
+static size_t strlen(const char *s) {
     int len = 0;
     while (*s++)
         len++;
     return len;
 }
 
-int strcmp(const char *s1, char *s2) {
+static int strcmp(const char *s1, char *s2) {
     int i = 0;
 
     while ((s1[i] == s2[i])) {
@@ -65,7 +66,7 @@ int strcmp(const char *s1, char *s2) {
 }
 
 
-int strncmp(const char *s1, const char *s2, register size_t n)
+static int strncmp(const char *s1, const char *s2, register size_t n)
 {
   register unsigned char u1, u2;
 
@@ -81,41 +82,41 @@ int strncmp(const char *s1, const char *s2, register size_t n)
   return 0;
 }
 
-int strcpy(char *dst, const char *src) {
+static int strcpy(char *dst, const char *src) {
     int i = 0;
     while ((*dst++ = *src++) != 0)
         i++;
     return i;
 }
 
-void strcat(char *dest, const char *src) {
+static void strcat(char *dest, const char *src) {
     char *end = (char *)dest + strlen(dest);
     memcpy((char *)end, (char *)src, strlen(src));
     end = end + strlen(src);
     *end = '\0';
 }
 
-int isspace(char c) {
+static int isspace(char c) {
     return c == ' ' || c == '\t' || c == '\n' || c == '\v' || c == '\f' || c == '\r';
 }
 
-int isalpha(char c) {
+static int isalpha(char c) {
     return (((c >= 'A') && (c <= 'Z')) || ((c >= 'a') && (c <= 'z')));
 }
 
-char upper(char c) {
+static char upper(char c) {
     if ((c >= 'a') && (c <= 'z'))
         return (c - 32);
     return c;
 }
 
-char lower(char c) {
+static char lower(char c) {
     if ((c >= 'A') && (c <= 'Z'))
         return (c + 32);
     return c;
 }
 
-void itoa(char *buf, int base, int d) {
+static void itoa(char *buf, int base, int d) {
     char *p = buf;
     char *p1, *p2;
     unsigned long ud = d;

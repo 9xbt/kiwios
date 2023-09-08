@@ -21,9 +21,9 @@
 
 #include "../terminal.h"
 
-void log(char* message) {
+void logger_log(char* message) {
     term_print("[ OK ] ", 0x0A);
-    term_println(message, 0x0F);
+    term_print(message, 0x0F);
 }
 
 #endif

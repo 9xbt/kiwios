@@ -31,7 +31,7 @@ build:
 	$(ASM) -f elf32 -o $(OBJ)/gdt.o $(ASM_SRC)/gdt.s
 	$(ASM) -f elf32 -o $(OBJ)/idt.o $(ASM_SRC)/idt.s
 	@printf "[ Compiling... ]\n"
-	$(CC) -m32 -c $(KERNEL_SRC)/kernel.c -o $(OBJ)/kernel.o $(CC_FLAGS)
+	$(CC) -m32 -c -I include $(KERNEL_SRC)/kernel.c -o $(OBJ)/kernel.o $(CC_FLAGS)
 	@printf "[ Linking... ]\n"
 	@$(LD) -m elf_i386 -T $(CONFIG)/linker.ld $(OBJ)/kernel.o $(OBJ)/entry.o $(OBJ)/exception.o $(OBJ)/irq.o $(OBJ)/gdt.o $(OBJ)/idt.o -o $(BIN)/boot/kiwios.elf -nostdlib
 	@printf "[ Checking... ]\n"

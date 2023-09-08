@@ -62,7 +62,7 @@ void gdt_set_entry(int index, uint32_t base, uint32_t limit, uint8_t access, uin
 // Initialize GDT
 void gdt_init() {
     g_gdt_ptr.limit = sizeof(g_gdt) - 1;
-    g_gdt_ptr.base_address = (uint32_t)g_gdt;
+    g_gdt_ptr.base_address = g_gdt;
 
     gdt_set_entry(0, 0, 0, 0, 0);                  // Null segment
     gdt_set_entry(1, 0, 0xFFFFFFFF, 0x9A, 0xCF);   // Code segment
@@ -70,9 +70,9 @@ void gdt_init() {
     gdt_set_entry(3, 0, 0xFFFFFFFF, 0xFA, 0xCF);   // User code segment
     gdt_set_entry(4, 0, 0xFFFFFFFF, 0xF2, 0xCF);   // User data segment
 
-    load_gdt((uint32_t)&g_gdt_ptr);
+    load_gdt(&g_gdt_ptr);
 
-    log("GDT Initialized");
+    logger_log("GDT Initialized\n");
 }
 
 #endif

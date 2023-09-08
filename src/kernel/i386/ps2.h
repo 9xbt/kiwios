@@ -229,7 +229,7 @@ void keyboard_handler(REGISTERS *r) {
 
 void kbd_init() {
     isr_register_interrupt_handler(IRQ_BASE + 1, keyboard_handler);
-    log("Keyboard Initialized");
+    logger_log("Keyboard Initialized\n");
 }
 
 // Blocking character read

@@ -31,8 +31,6 @@ void vga_init()
  
 	outb(0x3D4, 0x0B);
 	outb(0x3D5, (inb(0x3D5) & 0xE0) | 15);
-
-	log("VGA Initialized");
 }
 
 void vga_movecursor(int x, int y)
