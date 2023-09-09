@@ -27,12 +27,9 @@
 
 void kmain(void)
 {
-    term_clear();
-
     vga_init(0x0F);
     gdt_init();
     idt_init();
-    //asm volatile("div %ecx");
     kbd_init();
 
     term_println(buildstr, 0x0F);

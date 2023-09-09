@@ -16,8 +16,8 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#ifndef _8259_PIC_H
-#define _8259_PIC_H
+#ifndef PIC_H
+#define PIC_H
 
 #include <inttypes.h>
 #include "isr.h"
