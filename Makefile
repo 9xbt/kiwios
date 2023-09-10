@@ -16,7 +16,7 @@ OBJ = obj
 CONFIG = config
 # flags
 ASM_FLAGS = -f elf32
-CC_FLAGS = -std=gnu99 -ffreestanding -O2 -Wall -Wextra -Wno-implicit-function-declaration
+CC_FLAGS = -std=gnu99 -ffreestanding -O2 -Wall -Wextra -Wno-implicit-function-declaration -Wno-int-conversion
 
 all: build run
 
@@ -40,7 +40,7 @@ build:
 	grub-mkrescue -o kiwios.iso $(BIN)/
 
 run:
-	qemu-system-x86_64 -cdrom kiwios.iso
+	qemu-system-x86_64 -cdrom kiwios.iso -serial stdio
 
 clean:
 	rm -rf $(BIN)

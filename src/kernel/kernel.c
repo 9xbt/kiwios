@@ -22,12 +22,14 @@
 #include "i386/isr.h"
 #include "i386/ps2.h"
 #include "i386/vga.h"
+#include "drivers/serial.h"
 #include "terminal.h"
 #include "shell/shell.h"
 
 void kmain(void)
 {
     vga_init(0x0F);
+    serial_init();
     gdt_init();
     idt_init();
     kbd_init();

@@ -36,7 +36,7 @@ void vga_init(unsigned const char color) {
 	vga_enablecursor();
 }
 
-void vga_enablecursor()
+void vga_enablecursor(void)
 {
     outb(0x3D4, 0x0A);
 	outb(0x3D5, (inb(0x3D5) & 0xC0) | 14);

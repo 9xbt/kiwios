@@ -19,10 +19,16 @@
 #ifndef LOGGER_H
 #define LOGGER_H
 
+#include "../drivers/serial.h"
 #include "../terminal.h"
 
 void logger_log(const char* message) {
     term_print("[ OK ] ", 0x0A);
+    term_print(message, 0x0F);
+}
+
+void logger_elog(const char* message) {
+    term_print("[FAIL] ", 0x0C);
     term_print(message, 0x0F);
 }
 

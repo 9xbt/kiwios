@@ -116,7 +116,7 @@ void term_printchar(const char chr, const char col)
     vga_movecursor(TERMINAL_X, TERMINAL_Y);
 }
 
-void term_scroll()
+void term_scroll(void)
 {
     for (int i = 0; i < TERMINAL_WIDTH * TERMINAL_HEIGHT * 2; i++)
     {

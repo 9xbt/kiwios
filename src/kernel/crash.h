@@ -25,6 +25,10 @@
 #include "terminal.h"
 
 void showCrashScreen(const char *exception) {
+    serial_sendstring("EXCEPTION: ");
+    serial_sendstring(exception);
+    serial_send('\n');
+
     vga_init(0x11);
     
     term_setCursorPos(1, 1);

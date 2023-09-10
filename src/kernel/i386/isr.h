@@ -116,35 +116,35 @@ ISR g_interrupt_handlers[NO_INTERRUPT_HANDLERS];
 
 // For more details, see Intel manual -> Interrupt & Exception Handling
 const char *exception_messages[32] = {
-    "Division By Zero",
+    "Cannot divide by zero",
     "Debug",
-    "Non Maskable Interrupt",
+    "Non-maskable Interrupt",
     "Breakpoint",
     "Overflow",
-    "BOUND Range Exceeded",
+    "Bound Range Exceeded",
     "Invalid Opcode",
-    "Device Not Available (No Math Coprocessor)",
+    "Device Not Available",
     "Double Fault",
     "Coprocessor Segment Overrun",
     "Invalid TSS",
     "Segment Not Present",
     "Stack-Segment Fault",
-    "General Protection",
+    "General Protection Fault",
     "Page Fault",
-    "Unknown Interrupt (intel reserved)",
-    "x87 FPU Floating-Point Error (Math Fault)",
+    "Unknown Interrupt",
+    "x87 FPU Floating-Point Error",
     "Alignment Check",
     "Machine Check",
     "SIMD Floating-Point Exception",
     "Virtualization Exception",
+    "Control Protection Exception",
     "Reserved",
+    "Hypervisor Injection Exception",
+    "VMM Communication Exception",
+    "Security Exception",
     "Reserved",
-    "Reserved",
-    "Reserved",
-    "Reserved",
-    "Reserved",
-    "Reserved",
-    "Reserved",
+    "Triple Fault",
+    "FPU Error Interrupt",
     "Reserved",
     "Reserved",
     "Reserved"
@@ -159,7 +159,7 @@ void isr_register_interrupt_handler(int num, ISR handler) {
     char buf[4];
     itoa(buf, 10, num);
     term_print(buf, 0x0F);
-    term_println(" Registered", 0x0F); 
+    term_println(" Registered", 0x0F);
 }
 
 // Turn off current interrupt

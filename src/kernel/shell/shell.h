@@ -21,6 +21,7 @@
 
 #include "../i386/ps2.h"
 #include "../i386/port.h"
+#include "../drivers/serial.h"
 #include "../utils/string.h"
 #include "../terminal.h"
 #include "commands/help.h"
