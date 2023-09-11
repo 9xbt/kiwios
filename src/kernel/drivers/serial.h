@@ -66,7 +66,6 @@ void serial_send(const char a) {
 
 void serial_sendstring(const char *str) {
     int i = 0;
-
     while (str[i] != 0) {
         serial_send(str[i]);
         i++;
