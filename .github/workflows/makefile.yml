@@ -17,6 +17,7 @@ jobs:
     - name: Install prerequisites
       run:
         sudo apt-get update
+        
         sudo apt install -y nasm gcc binutils grub-common make gcc-multilib libc6-dev-i386 mtools
 
     - name: Run make build
