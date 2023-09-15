@@ -4,8 +4,8 @@ ASM = /usr/bin/nasm
 CC = /usr/bin/gcc
 # linker
 LD = /usr/bin/ld
-# grub iso creator
-GRUB = /usr/bin/grub-mkrescue
+# grub version
+GRUB = grub
 # sources
 SRC = SRC
 ASM_SRC = src/kernel/i386/asm
@@ -16,7 +16,7 @@ OBJ = obj
 CONFIG = config
 # flags
 ASM_FLAGS = -f elf32
-CC_FLAGS = -std=gnu99 -ffreestanding -O2 -Wall -Wextra -Wno-implicit-function-declaration -Wno-int-conversion
+CC_FLAGS = -std=gnu99 -ffreestanding -O2 -Wall -Wextra -Wno-implicit-function-declaration -Wno-int-conversion -nostdlib
 
 all: build run
 
@@ -33,11 +33,11 @@ build:
 	@printf "[ Compiling... ]\n"
 	$(CC) -m32 -c -I include $(KERNEL_SRC)/kernel.c -o $(OBJ)/kernel.o $(CC_FLAGS)
 	@printf "[ Linking... ]\n"
-	@$(LD) -m elf_i386 -T $(CONFIG)/linker.ld $(OBJ)/kernel.o $(OBJ)/entry.o $(OBJ)/exception.o $(OBJ)/irq.o $(OBJ)/gdt.o $(OBJ)/idt.o -o $(BIN)/boot/kiwios.elf -nostdlib
+	$(LD) -m elf_i386 -T $(CONFIG)/linker.ld $(OBJ)/kernel.o $(OBJ)/entry.o $(OBJ)/exception.o $(OBJ)/irq.o $(OBJ)/gdt.o $(OBJ)/idt.o -o $(BIN)/boot/kiwios.elf -nostdlib
 	@printf "[ Checking... ]\n"
-	grub-file --is-x86-multiboot $(BIN)/boot/kiwios.elf
+	$(GRUB)-file --is-x86-multiboot $(BIN)/boot/kiwios.elf
 	cp $(CONFIG)/grub.cfg $(BIN)/boot/grub/grub.cfg
-	grub-mkrescue -o kiwios.iso $(BIN)/
+	$(GRUB)-mkrescue -o kiwios.iso $(BIN)/
 
 run:
 	qemu-system-x86_64 -cdrom kiwios.iso -serial stdio
