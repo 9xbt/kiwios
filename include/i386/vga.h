@@ -14,7 +14,6 @@ void vga_enablecursor(void);
 void vga_movecursor(int x, int y);
 
 #include "port.h"
-#include "../terminal.h"
 #include "../src/i386/vga.c"
 
 #endif

@@ -38,7 +38,7 @@ build:
 	@$(LD) $(LD_FLAGS) $(CONFIG)/linker.ld $(OBJ)/kernel.o $(OBJ)/entry.o $(OBJ)/exception.o $(OBJ)/irq.o $(OBJ)/gdt.o $(OBJ)/idt.o -o $(BIN)/boot/kiwios.elf
 	@printf "[ Checking... ]\n"
 	@$(GRUB)-file --is-x86-multiboot $(BIN)/boot/kiwios.elf
-	@printf "[ Finalizing... ]\n"
+	@printf "[ Making the ISO... ]\n"
 	@cp $(CONFIG)/grub.cfg $(BIN)/boot/grub/grub.cfg
 	@$(GRUB)-mkrescue -o kiwios.iso $(BIN)/
 
