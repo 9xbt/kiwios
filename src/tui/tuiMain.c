@@ -18,12 +18,12 @@ void tuiMain(void)
 
     maxSel = 0;
 
-    term_print("████████████████████████████████████████████████████████████████████████████████", 0x02);
+    term_print(full_line, 0x02);
     term_print("██", 0x02);
     term_print(" Apps                                                                       ", 0x0F);
     term_print("██", 0x02);
-    term_print("████████████████████████████████████████████████████████████████████████████████", 0x02);
-    term_print("█                                                                              █", 0x02);
+    term_print(full_line, 0x02);
+    term_print(empty_line, 0x02);
     term_print("█ ", 0x02);
     term_print("<Option 1>", 0x4F);
     term_print("                                                                   █", 0x02);
@@ -31,23 +31,23 @@ void tuiMain(void)
     term_print("█ ", 0x02);
     term_print("<Option 2>", 0x0F);
     term_print("                                                                   █", 0x02);
-    term_print("█                                                                              █", 0x02);
-    term_print("█                                                                              █", 0x02);
-    term_print("█                                                                              █", 0x02);
-    term_print("█                                                                              █", 0x02);
-    term_print("█                                                                              █", 0x02);
-    term_print("█                                                                              █", 0x02);
-    term_print("█                                                                              █", 0x02);
-    term_print("█                                                                              █", 0x02);
-    term_print("█                                                                              █", 0x02);
-    term_print("█                                                                              █", 0x02);
-    term_print("█                                                                              █", 0x02);
-    term_print("█                                                                              █", 0x02);
-    term_print("█                                                                              █", 0x02);
-    term_print("█                                                                              █", 0x02);
-    term_print("█                                                                              █", 0x02);
-    term_print("█                                                                              █", 0x02);
-    term_print("████████████████████████████████████████████████████████████████████████████████", 0x02);
+    term_print(empty_line, 0x02);
+    term_print(empty_line, 0x02);
+    term_print(empty_line, 0x02);
+    term_print(empty_line, 0x02);
+    term_print(empty_line, 0x02);
+    term_print(empty_line, 0x02);
+    term_print(empty_line, 0x02);
+    term_print(empty_line, 0x02);
+    term_print(empty_line, 0x02);
+    term_print(empty_line, 0x02);
+    term_print(empty_line, 0x02);
+    term_print(empty_line, 0x02);
+    term_print(empty_line, 0x02);
+    term_print(empty_line, 0x02);
+    term_print(empty_line, 0x02);
+    term_print(empty_line, 0x02);
+    term_print(full_line, 0x02);
 
     while (true) {
         int scancode = get_scancode();
@@ -68,11 +68,11 @@ void tuiMain(void)
 }
 
 void selectionHandler(bool Up) {
-    term_print("████████████████████████████████████████████████████████████████████████████████", 0x02);
+    term_print(full_line, 0x02);
     term_print("██", 0x02);
     term_print(" Apps                                                                       ", 0x0F);
     term_print("██", 0x02);
-    term_print("████████████████████████████████████████████████████████████████████████████████", 0x02);
+    term_print(full_line, 0x02);
 
     if (Up) {
         cSel = cSel + 1;
@@ -82,11 +82,11 @@ void selectionHandler(bool Up) {
 
         // Handle actual selection
 
-        term_print("█                                                                              █", 0x02);
+        term_print(empty_line, 0x02);
         term_print("█ ", 0x02);
         term_print("<Option 1>", 0x4F);
         term_print("                                                                   █", 0x02);
-        term_print("█                                                                              █", 0x02);
+        term_print(empty_line, 0x02);
         term_print("█ ", 0x02);
         term_print("<Option 2>", 0x0F);
         term_print("                                                                   █", 0x02);
@@ -99,31 +99,31 @@ void selectionHandler(bool Up) {
 
         // Handle actual selection
 
-        term_print("█                                                                              █", 0x02);
+        term_print(empty_line, 0x02);
         term_print("█ ", 0x02);
         term_print("<Option 1>", 0x0F);
         term_print("                                                                   █", 0x02);
-        term_print("█                                                                              █", 0x02);
+        term_print(empty_line, 0x02);
         term_print("█ ", 0x02);
         term_print("<Option 2>", 0x4F);
         term_print("                                                                   █", 0x02);
     }
 
-    term_print("█                                                                              █", 0x02);
-    term_print("█                                                                              █", 0x02);
-    term_print("█                                                                              █", 0x02);
-    term_print("█                                                                              █", 0x02);
-    term_print("█                                                                              █", 0x02);
-    term_print("█                                                                              █", 0x02);
-    term_print("█                                                                              █", 0x02);
-    term_print("█                                                                              █", 0x02);
-    term_print("█                                                                              █", 0x02);
-    term_print("█                                                                              █", 0x02);
-    term_print("█                                                                              █", 0x02);
-    term_print("█                                                                              █", 0x02);
-    term_print("█                                                                              █", 0x02);
-    term_print("█                                                                              █", 0x02);
-    term_print("█                                                                              █", 0x02);
-    term_print("█                                                                              █", 0x02);
-    term_print("████████████████████████████████████████████████████████████████████████████████", 0x02);
+    term_print(empty_line, 0x02);
+    term_print(empty_line, 0x02);
+    term_print(empty_line, 0x02);
+    term_print(empty_line, 0x02);
+    term_print(empty_line, 0x02);
+    term_print(empty_line, 0x02);
+    term_print(empty_line, 0x02);
+    term_print(empty_line, 0x02);
+    term_print(empty_line, 0x02);
+    term_print(empty_line, 0x02);
+    term_print(empty_line, 0x02);
+    term_print(empty_line, 0x02);
+    term_print(empty_line, 0x02);
+    term_print(empty_line, 0x02);
+    term_print(empty_line, 0x02);
+    term_print(empty_line, 0x02);
+    term_print(full_line, 0x02);
 }

@@ -17,10 +17,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d0e3ecda-da8c-40b3-8a53-e91c8ac25a10" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/shell/shell.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/shell/shell.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/tui/tuiMain.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/tui/tuiMain.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/kiwios.iso" beforeDir="false" afterPath="$PROJECT_DIR$/kiwios.iso" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/i386/vga.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/i386/vga.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tui/tuiMain.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/tui/tuiMain.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,7 +84,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1695140143551</updated>
-      <workItem from="1695140144934" duration="6208000" />
+      <workItem from="1695140144934" duration="6943000" />
     </task>
     <servers />
   </component>

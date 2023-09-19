@@ -8,6 +8,9 @@
 int maxSel = 0;
 int cSel = 0;
 
+char full_line[] = "████████████████████████████████████████████████████████████████████████████████";
+char empty_line[] = "█                                                                              █";
+
 static void tuiMain(void);
 
 static void selectionHandler(bool Up);
