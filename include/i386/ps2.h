@@ -108,8 +108,8 @@
 #define SCAN_CODE_KEY_F11                    0x57
 #define SCAN_CODE_KEY_F12                    0x58
 
-#include <inttypes.h>
-#include <stdbool.h>
+#include "inttypes.h"
+#include "stdbool.h"
 #include "idt.h"
 #include "port.h"
 #include "isr.h"

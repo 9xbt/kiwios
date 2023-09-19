@@ -19,7 +19,7 @@
 #ifndef PIC_H
 #define PIC_H
 
-#include <inttypes.h>
+#include "inttypes.h"
 #include "isr.h"
 #include "idt.h"
 #include "port.h"

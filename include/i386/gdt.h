@@ -19,7 +19,7 @@
 #ifndef GDT_H
 #define GDT_H
 
-#include <inttypes.h>
+#include "inttypes.h"
 #include "../logger.h"
 
 #define NO_GDT_DESCRIPTORS 8

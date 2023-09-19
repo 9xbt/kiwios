@@ -5,7 +5,9 @@
         "gdt.h": "c",
         "isr.h": "c",
         "idt.h": "c",
-        "logger.h": "c"
+        "logger.h": "c",
+        "common.h": "c",
+        "inttypes.h": "c"
     },
     "C_Cpp.errorSquiggles": "disabled",
     "C_Cpp.default.compilerPath": "/usr/bin/gcc",

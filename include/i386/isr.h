@@ -19,7 +19,7 @@
 #ifndef ISR_H
 #define ISR_H
 
-#include <inttypes.h>
+#include "inttypes.h"
 #include "isr.h"
 #include "idt.h"
 #include "pic.h"

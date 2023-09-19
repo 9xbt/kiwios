@@ -34,7 +34,7 @@ void term_scroll(void);
 
 void term_setCursorPos(char x, char y);
 
-#include <stdbool.h>
+#include "stdbool.h"
 #include "i386/port.h"
 #include "i386/vga.h"
 #include "../src/terminal.c"

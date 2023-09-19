@@ -22,7 +22,6 @@ LD_FLAGS = -m elf_i386 -nostdlib -z noexecstack -T
 all: build run
 
 build:
-	clear
 	mkdir -p $(BIN)/boot/grub
 	mkdir -p $(OBJ)
 

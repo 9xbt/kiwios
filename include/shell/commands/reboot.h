@@ -19,6 +19,7 @@
 #ifndef REBOOT_H
 #define REBOOT_H
 
+#include "inttypes.h"
 #include "../../i386/port.h"
 
 #define KBRD_INTRFC 0x64

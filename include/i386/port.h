@@ -19,7 +19,7 @@
 #ifndef HAL_H
 #define HAL_H
 
-#include <inttypes.h>
+#include "inttypes.h"
 
 static inline uint8_t inb(uint16_t port)
 {
