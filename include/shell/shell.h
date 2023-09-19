@@ -30,6 +30,7 @@
 #include "commands/echo.h"
 #include "commands/reboot.h"
 #include "commands/shutdown.h"
+#include "commands/tui.h"
 
 static void shell_run() {
     term_print("$ ", 0x0F);
@@ -53,6 +54,9 @@ static void shell_run() {
     }
     else if (!strcmp(input, "shutdown")) {
         cmd_shutdown();
+    }
+    else if (!strcmp(input, "tui")) {
+        cmd_tui();
     }
     else {
         term_print("Command \"", 0x0C);

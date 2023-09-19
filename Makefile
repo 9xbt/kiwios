@@ -16,7 +16,7 @@ CONFIG = config
 INCLUDE = ../include
 # flags
 ASM_FLAGS = -f elf32
-CC_FLAGS = -std=gnu99 -ffreestanding -O2 -Wall -I$(INCLUDE) -Wextra -Wno-int-conversion -Wno-unused-function -nostdlib
+CC_FLAGS = -std=gnu99 -ffreestanding -O2 -Wall -I$(INCLUDE) -Wextra -Wno-int-conversion -Wno-unused-function -nostdlib -fexec-charset=CP437
 LD_FLAGS = -m elf_i386 -nostdlib -z noexecstack -T
 
 all: build run

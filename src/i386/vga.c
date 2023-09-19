@@ -29,8 +29,8 @@ void vga_init(unsigned const char color) {
 }
 
 void vga_putchar(int x, int y, const char c, const char color) {
-	*(char*)(VGA_BUFFER + y * VGA_WIDTH + x) = c;
-	*(char*)(VGA_BUFFER + y * VGA_WIDTH + x + 1) = color;
+	*(char*)((VGA_BUFFER + y * VGA_WIDTH + x) * 2) = c;
+	*(char*)((VGA_BUFFER + y * VGA_WIDTH + x + 1) * 2) = color;
 }
 
 void vga_enablecursor(void)
