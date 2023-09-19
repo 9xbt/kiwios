@@ -19,8 +19,6 @@
 #ifndef COMMON_H
 #define COMMON_H
 
-#define size_t uint32_t
-
 const char* buildstr = "\nkiwiOS [build 230919]";
 const char* logostr = " _    _          _  ___  ____\n| | _(_)_      _(_)/ _ \\/ ___|\n| |/ / \\ \\ /\\ / / | | | \\___ \\\n|   <| |\\ V  V /| | |_| |___) |\n|_|\\_\\_| \\_/\\_/ |_|\\___/|____/\n";
 const char* copyrightstr = "Copyright (c) 2023 kiwiorg\nAll rights reserved\n";
