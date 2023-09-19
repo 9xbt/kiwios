@@ -20,7 +20,6 @@
 #define STRING_H
 
 #include "inttypes.h"
-#include "stddef.h"
 #include "common.h"
 
 static void *memset(void *dst, char c, uint32_t n) {
