@@ -43,7 +43,7 @@ static void shell_run() {
     else {
         term_print("Command \"", 0x0C);
         term_print(input, 0x0C);
-        term_println("\" not found.", 0x0C);
+        term_println("\" not found!", 0x0C);
     }
 }
 

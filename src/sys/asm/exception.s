@@ -3,6 +3,8 @@
 ; Copyright (C) 2023 kiwiorg
 ;
 
+[BITS 32]
+
 section .text
     extern isr_exception_handler
     global exception_0

@@ -14,7 +14,8 @@ static void cmd_info() {
     term_println(buildstr, 0x07);
     term_println(logostr, 0x0D);
     term_println(copyrightstr, 0x07);
-    term_println(licensestr, 0x07); 
+    term_println(licensestr, 0x07);
+    term_println(peoplestr, 0x07);
 }
 
 #endif

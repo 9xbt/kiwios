@@ -3,6 +3,8 @@
 ; Copyright (C) 2023 kiwiorg
 ;
 
+[BITS 32]
+
 MAGIC equ 0x1BADB002
 FLAGS equ 0
 CHECKSUM equ -(MAGIC + FLAGS)
