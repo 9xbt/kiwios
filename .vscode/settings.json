@@ -7,7 +7,11 @@
         "idt.h": "c",
         "logger.h": "c",
         "common.h": "c",
-        "inttypes.h": "c"
+        "inttypes.h": "c",
+        "stdbool.h": "c",
+        "vga.h": "c",
+        "pic.h": "c",
+        "string.h": "c"
     },
     "C_Cpp.errorSquiggles": "disabled",
     "C_Cpp.default.compilerPath": "/usr/bin/gcc",

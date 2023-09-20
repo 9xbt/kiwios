@@ -8,15 +8,14 @@ LD = /usr/bin/ld
 GRUB = grub
 # sources
 SRC = src
-ASM_SRC = src/i386/asm
+ASM_SRC = src/sys/asm
 # objects
 BIN = bin
 OBJ = obj
-CONFIG = config
-INCLUDE = ../include
+CONFIG = conf
 # flags
 ASM_FLAGS = -f elf32
-CC_FLAGS = -std=gnu99 -ffreestanding -O2 -Wall -I$(INCLUDE) -Wextra -Wno-int-conversion -Wno-unused-function -nostdlib -fexec-charset=CP437
+CC_FLAGS = -std=gnu99 -ffreestanding -O2 -Wall -Wextra -Wno-int-conversion -Wno-unused-function -nostdlib -fexec-charset=CP437 -I src
 LD_FLAGS = -m elf_i386 -nostdlib -z noexecstack -T
 
 all: build run
@@ -32,7 +31,7 @@ build:
 	@$(ASM) -f elf32 -o $(OBJ)/gdt.o $(ASM_SRC)/gdt.s
 	@$(ASM) -f elf32 -o $(OBJ)/idt.o $(ASM_SRC)/idt.s
 	@printf "[ Compiling... ]\n"
-	@$(CC) -m32 -c -I include $(SRC)/kernel.c -o $(OBJ)/kernel.o $(CC_FLAGS)
+	@$(CC) -m32 -c $(SRC)/kernel/kernel.c -o $(OBJ)/kernel.o $(CC_FLAGS)
 	@printf "[ Linking... ]\n"
 	@$(LD) $(LD_FLAGS) $(CONFIG)/linker.ld $(OBJ)/kernel.o $(OBJ)/entry.o $(OBJ)/exception.o $(OBJ)/irq.o $(OBJ)/gdt.o $(OBJ)/idt.o -o $(BIN)/boot/kiwios.elf
 	@printf "[ Checking... ]\n"
