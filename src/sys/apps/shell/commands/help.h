@@ -9,7 +9,7 @@
 #include <sys/drivers/vga/terminal.h>
 
 static void cmd_help() {
-    term_println("Available commands: ?/help, man, info, echo, cls/clear, reboot, shutdown", 0x07);
+    term_println("Available commands: ?/help, info, echo, cls/clear, reboot, shutdown", 0x07);
 }
 
 #endif
