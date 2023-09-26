@@ -6,7 +6,7 @@
 #ifndef ECHO_H
 #define ECHO_H
 
-#include <sys/drivers/vga/terminal.h>
+#include <sys/drivers/terminal/terminal.h>
 
 static void cmd_echo(char* input) {
     term_println(input + 5, 0x07);

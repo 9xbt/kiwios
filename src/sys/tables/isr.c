@@ -35,7 +35,7 @@ void isr_irq_handler(REGISTERS *reg) {
 // Invoke exception routine, being called in exception.asm
 void isr_exception_handler(REGISTERS reg) {
     if (reg.int_no < 32) {
-        showCrashScreen(exception_messages[reg.int_no]);
+        panic(exception_messages[reg.int_no]);
         for (;;);
     }
     
@@ -43,4 +43,21 @@ void isr_exception_handler(REGISTERS reg) {
         ISR handler = g_interrupt_handlers[reg.int_no];
         handler(&reg);
     }
+}
+
+void panic(const char* exception) {
+    vga_init(0x11);
+    
+    term_setCursorPos(1, 1);
+    term_print("     __\n   _ / /\n  (_) |\n   _| |\n  (_) |\n     \\_\\", 0x1F);    
+
+    term_setCursorPos(12, 3);
+    term_print("A problem has been detected and kiwios has had to shut down.", 0x1F);
+
+    term_setCursorPos(12, 5);
+    term_print("*** STOP: ", 0x1F);
+    term_print(exception, 0x1F);
+    term_print(" ***", 0x1F);
+
+    for (;;);
 }

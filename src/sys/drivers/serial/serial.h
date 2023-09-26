@@ -9,6 +9,7 @@
 #define COM1 0x3F8          // COM1
 
 #include <sys/hw/io.h>
+#include <sys/drivers/terminal/terminal.h>
  
 static void serial_init() {
     outb(COM1 + 1, 0x00);   // Disable all interrupts

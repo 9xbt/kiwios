@@ -6,9 +6,9 @@
 #ifndef SHELL_H
 #define SHELL_H
 
-#include <sys/drivers/ps2/kb.h>
-#include <sys/drivers/vga/terminal.h>
 #include <sys/hw/io.h>
+#include <sys/drivers/ps2/kb.h>
+#include <sys/drivers/terminal/terminal.h>
 #include <string.h>
 #include "commands/help.h"
 #include "commands/info.h"

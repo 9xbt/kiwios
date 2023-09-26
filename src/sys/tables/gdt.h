@@ -7,7 +7,7 @@
 #define GDT_H
 
 #include <inttypes.h>
-#include <sys/drivers/vga/terminal.h>
+#include <sys/drivers/terminal/terminal.h>
 
 #define NO_GDT_DESCRIPTORS 8
 

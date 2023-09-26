@@ -6,7 +6,7 @@
 #ifndef HELP_H
 #define HELP_H
 
-#include <sys/drivers/vga/terminal.h>
+#include <sys/drivers/terminal/terminal.h>
 
 static void cmd_help() {
     term_println("Available commands: ?/help, info, echo, cls/clear, reboot, shutdown", 0x07);

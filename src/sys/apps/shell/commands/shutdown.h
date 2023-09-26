@@ -7,7 +7,7 @@
 #define SHUTDOWN_H
 
 #include <sys/hw/io.h>
-#include <sys/drivers/vga/terminal.h>
+#include <sys/drivers/terminal/terminal.h>
 
 static void cmd_shutdown(void) {
     // All tried and true methods of shutting down VMs
@@ -15,7 +15,7 @@ static void cmd_shutdown(void) {
     outw(0x604, 0x2000);
     outw(0x4004, 0x3400);
 
-    term_println("\nFailed to shut down!", 0x07);
+    term_println("\nFailed to shut down! Shutting down only works on QEMU, Bochs and VirtualBox for now.", 0x07);
 }
 
 #endif

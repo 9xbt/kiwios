@@ -11,7 +11,14 @@
         "stdbool.h": "c",
         "vga.h": "c",
         "pic.h": "c",
-        "string.h": "c"
+        "string.h": "c",
+        "memory.h": "c",
+        "cstdlib": "c",
+        "algorithm": "c",
+        "shell.h": "c",
+        "help.h": "c",
+        "kb.h": "c",
+        "io.h": "c"
     },
     "C_Cpp.errorSquiggles": "disabled",
     "C_Cpp.default.compilerPath": "/usr/bin/gcc",

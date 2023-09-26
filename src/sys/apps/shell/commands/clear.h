@@ -6,7 +6,7 @@
 #ifndef CLEAR_H
 #define CLEAR_H
 
-#include <sys/drivers/vga/terminal.h>
+#include <sys/drivers/terminal/terminal.h>
 
 static void cmd_clear() {
     term_clear();

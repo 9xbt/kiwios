@@ -31,4 +31,6 @@ SECTIONS
 		*(COMMON)
 		*(.bss)
 	}
+
+	kend = ALIGN(4K);
 }

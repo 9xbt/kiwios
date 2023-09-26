@@ -7,8 +7,7 @@
 #define INFO_H
 
 #include <sys/common.h>
-#include <sys/drivers/vga/vga.h>
-#include <sys/drivers/vga/terminal.h>
+#include <sys/drivers/terminal/terminal.h>
 
 static void cmd_info() {
     term_println(buildstr, 0x07);

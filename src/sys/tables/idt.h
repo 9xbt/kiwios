@@ -10,7 +10,7 @@
 #include <sys/tables/idt.h>
 #include <sys/tables/isr.h>
 #include <sys/hw/pic.h>
-#include <sys/drivers/vga/terminal.h>
+#include <sys/drivers/terminal/terminal.h>
 
 #define NO_IDT_DESCRIPTORS     256
 

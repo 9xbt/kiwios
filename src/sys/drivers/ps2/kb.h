@@ -137,7 +137,7 @@ char* kbd_getstring();
 #include <sys/tables/idt.h>
 #include <sys/tables/isr.h>
 #include <sys/hw/io.h>
-#include <sys/drivers/vga/terminal.h>
+#include <sys/drivers/terminal/terminal.h>
 
 #include "kb.c"
 
