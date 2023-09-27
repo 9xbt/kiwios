@@ -14,4 +14,8 @@ typedef unsigned short uint16_t;
 typedef unsigned int uint32_t;
 typedef unsigned int size_t;
 
+static uint8_t toHex(uint8_t value) {
+    return (uint8_t)(value / 16 * 10 + (value & 0xF));
+}
+
 #endif

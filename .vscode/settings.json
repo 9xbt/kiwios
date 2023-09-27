@@ -18,9 +18,17 @@
         "shell.h": "c",
         "help.h": "c",
         "kb.h": "c",
-        "io.h": "c"
+        "io.h": "c",
+        "ata.h": "c",
+        "system_error": "c",
+        "array": "c",
+        "functional": "c",
+        "tuple": "c",
+        "type_traits": "c",
+        "utility": "c"
     },
     "C_Cpp.errorSquiggles": "disabled",
     "C_Cpp.default.compilerPath": "/usr/bin/gcc",
-    "C_Cpp.default.cStandard": "gnu99"
+    "C_Cpp.default.cStandard": "gnu99",
+    "cmake.configureOnOpen": false
 }

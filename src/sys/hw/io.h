@@ -22,7 +22,7 @@ static inline void outb(uint16_t port, uint8_t val)
 
 static inline uint16_t inw(uint16_t port)
 {
-    uint8_t ret;
+    uint16_t ret;
     asm volatile ("inw %1, %0" : "=a"(ret) : "Nd"(port) : "memory");
     return ret;
 }
