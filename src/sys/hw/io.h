@@ -3,8 +3,7 @@
  * Copyright (C) 2023 kiwiorg
  */
 
-#ifndef IO_H
-#define IO_H
+#pragma once
 
 #include <inttypes.h>
 
@@ -36,5 +35,3 @@ static inline void io_wait(void)
 {
     outb(0x80, 0);
 }
-
-#endif

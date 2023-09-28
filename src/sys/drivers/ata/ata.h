@@ -3,8 +3,7 @@
  * Copyright (C) 2023 kiwiorg
  */
 
-#ifndef ATA_H
-#define ATA_H
+#pragma once
 
 #include <sys/hw/io.h>
 #include <sys/hw/pic.h>
@@ -99,5 +98,3 @@ typedef struct {
 void ata_init();
 
 #include "ata.c"
-
-#endif

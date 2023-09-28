@@ -3,8 +3,7 @@
  * Copyright (C) 2023 kiwiorg
  */
 
-#ifndef KEYBOARD_H
-#define KEYBOARD_H
+#pragma once
 
 #define KEYBOARD_DATA_PORT                 0x60
 #define KEYBOARD_STATUS_PORT               0x64
@@ -140,5 +139,3 @@ char* kbd_getstring();
 #include <sys/drivers/terminal/terminal.h>
 
 #include "kb.c"
-
-#endif

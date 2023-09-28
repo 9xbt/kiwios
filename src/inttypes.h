@@ -3,8 +3,7 @@
  * Copyright (C) 2023 kiwiorg
  */
 
-#ifndef INTTYPES_H
-#define INTTYPES_H
+#pragma once
 
 typedef signed char int8_t;
 typedef signed short int16_t;
@@ -17,5 +16,3 @@ typedef unsigned int size_t;
 static uint8_t toHex(uint8_t value) {
     return (uint8_t)(value / 16 * 10 + (value & 0xF));
 }
-
-#endif

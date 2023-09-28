@@ -3,8 +3,7 @@
  * Copyright (C) 2023 kiwiorg
  */
 
-#ifndef STRING_H
-#define STRING_H
+#pragma once
 
 #include <inttypes.h>
 #include <sys/common.h>
@@ -135,5 +134,3 @@ static void itoa(char *buf, int base, int d) {
         p2--;
     }
 }
-
-#endif

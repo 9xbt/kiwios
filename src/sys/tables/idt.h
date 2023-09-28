@@ -3,8 +3,7 @@
  * Copyright (C) 2023 kiwiorg
  */
 
-#ifndef IDT_H
-#define IDT_H
+#pragma once
 
 #include <inttypes.h>
 #include <sys/tables/idt.h>
@@ -101,5 +100,3 @@ extern void irq_15();
 void idt_init();
 
 #include "idt.c"
-
-#endif

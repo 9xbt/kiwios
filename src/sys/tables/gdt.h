@@ -3,8 +3,7 @@
  * Copyright (C) 2023 kiwiorg
  */
 
-#ifndef GDT_H
-#define GDT_H
+#pragma once
 
 #include <inttypes.h>
 #include <sys/drivers/terminal/terminal.h>
@@ -38,5 +37,3 @@ void gdt_set_entry(int index, uint32_t base, uint32_t limit, uint8_t access, uin
 void gdt_init();
 
 #include "gdt.c"
-
-#endif

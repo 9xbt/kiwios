@@ -3,8 +3,7 @@
  * Copyright (C) 2023 kiwiorg
  */
 
-#ifndef TERMINAL_H
-#define TERMINAL_H
+#pragma once
 
 char TERMINAL_X = 0;
 char TERMINAL_Y = 0;
@@ -20,5 +19,3 @@ void term_setCursorPos(char x, char y);
 #include <sys/hw/io.h>
 #include <sys/hw/vga.h>
 #include "terminal.c"
-
-#endif

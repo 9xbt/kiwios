@@ -11,6 +11,8 @@
 #include <sys/drivers/ps2/kb.h>
 #include <sys/drivers/terminal/terminal.h>
 #include <sys/drivers/ata/ata.h>
+#include <sys/devices/device.h>
+#include <sys/devices/device.h>
 #include <sys/memory/memory.h>
 #include <sys/devices/device.h>
 #include <sys/apps/shell/shell.h>

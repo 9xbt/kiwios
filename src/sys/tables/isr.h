@@ -3,8 +3,7 @@
  * Copyright (C) 2023 kiwiorg
  */
 
-#ifndef ISR_H
-#define ISR_H
+#pragma once
 
 #include <inttypes.h>
 #include <sys/tables/idt.h>
@@ -151,5 +150,3 @@ void isr_exception_handler(REGISTERS reg);
 void panic(const char* exception);
 
 #include "isr.c"
-
-#endif

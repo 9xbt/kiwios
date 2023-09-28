@@ -3,8 +3,7 @@
  * Copyright (C) 2023 kiwiorg
  */
 
-#ifndef __DEVICE_H_
-#define __DEVICE_H_
+#pragma once
 
 #include <sys/hw/io.h>
 #include <sys/drivers/terminal/terminal.h>
@@ -38,5 +37,3 @@ device_t *device_get(uint32_t id);
 device_t *device_get_by_id(uint32_t id);
 
 #include "device.c"
-
-#endif

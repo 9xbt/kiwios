@@ -3,8 +3,7 @@
  * Copyright (C) 2023 kiwiorg
  */
 
-#ifndef SERIAL_H
-#define SERIAL_H
+#pragma once
 
 #define COM1 0x3F8          // COM1
 
@@ -60,5 +59,3 @@ static void serial_sendstring(const char *str) {
         i++;
     }
 }
-
-#endif

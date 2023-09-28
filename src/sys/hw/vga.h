@@ -3,8 +3,7 @@
  * Copyright (C) 2023 kiwiorg
  */
 
-#ifndef VGA_H
-#define VGA_H
+#pragma once
 
 #include <sys/hw/io.h>
 
@@ -43,5 +42,3 @@ static void vga_movecursor(int x, int y)
 	outb(0x3D4, 0x0E);
 	outb(0x3D5, (unsigned char) ((pos >> 8) & 0xFF));
 }
-
-#endif

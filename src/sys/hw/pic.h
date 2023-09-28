@@ -3,8 +3,7 @@
  * Copyright (C) 2023 kiwiorg
  */
 
-#ifndef PIC_H
-#define PIC_H
+#pragma once
 
 #include <inttypes.h>
 #include <sys/tables/isr.h>
@@ -60,5 +59,3 @@ static void pic_eoi(uint8_t irq) {
         outb(PIC2, PIC_EOI);
     outb(PIC1, PIC_EOI);
 }
-
-#endif
