@@ -10,11 +10,9 @@
 #include <sys/tables/isr.h>
 #include <sys/drivers/ps2/kb.h>
 #include <sys/drivers/terminal/terminal.h>
-#include <sys/drivers/ata/ata.h>
-#include <sys/devices/device.h>
-#include <sys/devices/device.h>
+#include <sys/drivers/ide/ide.h>
+#include <sys/drivers/fat32/fat32.h>
 #include <sys/memory/memory.h>
-#include <sys/devices/device.h>
 #include <sys/apps/shell/shell.h>
 
 extern void* kend;
@@ -26,7 +24,6 @@ void kmain()
     mm_init(&kend);
     gdt_init();
     idt_init();
-    device_init();
     ata_init();
     kbd_init();
 

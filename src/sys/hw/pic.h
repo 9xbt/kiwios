@@ -9,6 +9,7 @@
 #include <sys/tables/isr.h>
 #include <sys/tables/idt.h>
 #include <sys/hw/io.h>
+#include <sys/drivers/terminal/terminal.h>
 
 #define PIC1            0x20       // IO base address for master PIC
 #define PIC2            0xA0       // IO base address for slave PIC
@@ -51,6 +52,9 @@ static void pic_init() {
     // Restore the mask registers
     outb(PIC1_DATA, a1);
     outb(PIC2_DATA, a2);
+
+    term_print("[ OK ] ", 0x0A);
+    term_print("PIC Initialized\n", 0x0F);
 }
 
 // Send end of interrupt command to PIC 8259
