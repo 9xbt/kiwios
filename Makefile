@@ -41,7 +41,7 @@ build:
 	@$(GRUB)-mkrescue -o kiwios.iso $(BIN)/
 
 run:
-	qemu-system-x86_64 -cdrom kiwios.iso -serial stdio disks/kiwios.raw
+	qemu-system-x86_64 -cdrom kiwios.iso -serial stdio disks/kiwios.img
 
 clean:
 	rm -rf $(BIN)

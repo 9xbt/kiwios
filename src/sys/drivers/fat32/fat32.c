@@ -671,7 +671,7 @@ static fstatus fat_follow_path(struct dir_s* dir, const char* path, u32 length) 
 		// fragment, and `frag_size` will contain the size
 
 		printf("Searching for directory: ");
-		printf_count(frag_ptr, frag_size);
+		//printf_count(frag_ptr, frag_size);
 		printf("\n");
 
 		// Search for a matching directory name in the current directory. If
@@ -761,72 +761,6 @@ static void fat_printf_info(struct info_s* info) {
 // FAT23 file system API
 // This section will implement the file system API exposed to the user
 //------------------------------------------------------------------------------
-
-// This is the `main` functions that is used to tast the file system
-void fat32_thread(void* arg) {
-	
-	// Configure the hardware
-	board_sd_card_config();
-	
-	// Wait for the SD card to be insterted
-	while (!board_sd_card_get_status());
-	
-	// Try to mount the disk. If this is not working the disk initialize 
-	// functions may be ehh...
-	disk_mount(DISK_HD1);
-	
-	for (u8 i = 0; i < 6; i++) {
-		printf("S: %d c: %d\n", cluster_size_lut[i].clust_size, cluster_size_lut[i].sector_cnt);
-	}
-	
-	struct volume_s* tmp = volume_get('C');
-	u32 cluster;
-	
-	fat_get_cluster(tmp, &cluster);
-	fat_table_set(tmp, 33, 0);
-	fat_printf_table(tmp, 0);
-
-	// printf all the volumes on the system
-	printf("Displaying system volumes:\n");
-	struct volume_s* vol = volume_get_first();
-	while (vol) {
-		for (u8 i = 0; i < 11; i++) {
-			if (vol->label[i]) {
-				printf("%c", vol->label[i]);
-			}
-		}
-		printf(" (%c:)\n", vol->letter);
-		vol = vol->next;
-	}
-	printf("\n");
-	
-	
-	// List all directories
-	struct dir_s dir;
-	fat_dir_open(&dir, "C:/alpha/", 0);
-	
-	struct info_s* info = (struct info_s *)malloc(sizeof(struct info_s));
-	fstatus status;
-	printf("\nListing directories in: C:/alpha\n");
-	do {
-		status = fat_dir_read(&dir, info);
-		
-		if (fat_memcmp(info->name, "uuuuuughh.txt", info->name_length)) {
-			//fat_dir_rename(&dir, "dude", 4);
-		}
-		
-		// printf the information
-		if (status == FSTATUS_OK) {
-			fat_printf_info(info);
-		}
-	} while (status != FSTATUS_EOF);
-
-	printf("- EOD -\n");
-
-	while (1) {
-		
-	}
-}
 
 // Mounts a physical disk. It checks for a valid FAT32 file system in all
 // available disk partitions. All valid file system is dynamically allocated
@@ -920,7 +854,7 @@ u8 disk_eject(disk_t disk) {
 			if (!fat_volume_remove(vol->letter)) {
 				return 0;
 			}
-			dynamic_memory_free(vol);
+			free(vol);
 		}
 		vol = vol->next;
 	}

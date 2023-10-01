@@ -18,6 +18,7 @@ u8 disk_initialize(disk_t disk) {
 	switch (disk) {
 		case DISK_HD1: {
 			ata_init();
+			return 1;
 		}
 	}
 	return 0;
